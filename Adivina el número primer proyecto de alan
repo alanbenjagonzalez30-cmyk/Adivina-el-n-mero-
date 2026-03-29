@@ -1,0 +1,53 @@
+import random
+
+ganadas = 0
+perdidas = 0
+
+jugar = "si"
+
+while jugar == "si":
+
+    print("¿Qué nivel de dificultad quieres?")
+
+    dificultad = input("Elegí dificultad (facil/dificil): ").lower()
+
+    if dificultad == "facil":
+        intentos = 5
+    elif dificultad == "dificil":
+        intentos = 3
+    else:
+        intentos = 3
+
+    numero_secreto = random.randint(1, 10)
+
+    gano = False  # 👈 esto sirve para saber si ganó o no
+
+    while intentos > 0:
+        numero = int(input("Adiviná el número (1-10): "))
+
+        if numero == numero_secreto:
+            print("¡Ganaste! 🎉")
+            gano = True
+            break
+        elif numero > numero_secreto:
+            print("Muy alto ⬆️")
+        else:
+            print("Muy bajo ⬇️")
+
+        intentos -= 1
+        print("Te quedan", intentos, "intentos")
+
+    if not gano:
+        print("Perdiste 😢. El número era", numero_secreto)
+
+    # 👇 ACÁ SE GUARDAN LAS ESTADÍSTICAS
+    if gano:
+        ganadas += 1
+    else:
+        perdidas += 1
+
+    # 👇 MOSTRAR ESTADÍSTICAS
+    print("🏆 Ganadas:", ganadas)
+    print("😢 Perdidas:", perdidas)
+
+    jugar = input("¿Querés jugar otra vez? (si/no): ").lower()
